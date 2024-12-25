@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">databaseapp</string>
+    <string name="add_project">Добавить проект</string>
+</resources>
