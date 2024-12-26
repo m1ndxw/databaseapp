@@ -11,7 +11,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
-    // Список проектов (используется как база данных)
+    // cписок проектов (используется как база данных)
     private val projectList = mutableListOf(
         Project(1, "Проект 1", "Описание проекта 1"),
         Project(2, "Проект 2", "Описание проекта 2"),
@@ -24,18 +24,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Инициализация RecyclerView
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Создание адаптера для отображения данных
         adapter = ProjectAdapter(projectList) { project ->
-            // Обработчик нажатия на проект (удаление)
             removeProject(project)
         }
         recyclerView.adapter = adapter
 
-        // Кнопка для добавления нового проекта
         val fab: FloatingActionButton = findViewById(R.id.fabAddProject)
         fab.setOnClickListener {
             val newProject = Project(projectList.size + 1, "Проект ${projectList.size + 1}", "Описание нового проекта")
@@ -43,13 +39,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Добавление нового проекта
     private fun addProject(newProject: Project) {
         projectList.add(newProject)
         adapter.notifyItemInserted(projectList.size - 1)
     }
 
-    // Удаление проекта
     private fun removeProject(project: Project) {
         projectList.remove(project)
         adapter.notifyDataSetChanged()  // Обновляем список
